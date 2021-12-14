@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt" 
+	xmlns="http://www.w3.org/1999/xhtml​"
+	xmlns:th="http://www.thymeleaf.org​"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout​">
+<head>
+<meta charset="UTF-8">
+<title>Respostas</title>
+<link rel="stylesheet" href="/css/style.css">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="viewport" content="witdth=device-width, initial-scale=1, shrink-to-fit=no" />
+
+</head>
+<body>
+	<header>
+		
+		<div class="container">
+			<div id="logo">
+				<img src="/images/logoIF.png" height="70px">
+			</div>
+
+			<div id="menu">
+				<a href="/">Início</a>
+				<a href="/horarios/principal">Horários de CA</a>
+				<a href="/turmas/principal">Turmas</a>
+			</div>
+
+			<div id="divSair">
+                <form th:action="@{/logout}" id="formSair" method="post">
+					<input type="submit" value="Sair">
+				</form>
+            </div>
+		</div>
+	
+	</header>
+
+	<div>
+
+		<div id="resposta">
+			<form id="formBuscarForum" th:action="@{/turmas/buscarR}" method="get">
+	          	<h3>Respostas</h3>
+			</form>
+			<br>
+			<table id="tResposta" th:each="a : ${respostasEncontradas}">
+				<tr>
+					<th th:text="${a.titulo}"></th>
+				</tr>
+				<tr>
+					<td th:text="${a.texto}"></td>
+				</tr>
+				<tr>
+					<td th:text="'Data da resposta: ' + ${a.data}"></td>
+				</tr>
+			</table>
+		</div>
+
+	</div>
+
+	<footer>
+		<p>-</p>
+	</footer>
+</body>
+</html>

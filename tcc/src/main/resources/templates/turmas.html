@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt" 
+	xmlns="http://www.w3.org/1999/xhtml​"
+	xmlns:th="http://www.thymeleaf.org​"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout​">
+<head>
+<meta charset="UTF-8">
+<title>Turmas</title>
+<link rel="stylesheet" href="/css/style.css">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="viewport" content="witdth=device-width, initial-scale=1, shrink-to-fit=no" />
+
+</head>
+<body>
+	<header>
+		
+		<div class="container">
+			<div id="logo">
+				<img src="/images/logoIF.png" height="70px">
+			</div>
+
+			<div id="menu">
+				<a href="/">Início</a>
+				<a href="/horarios/principal">Horários de CA</a>
+				<a href="/turmas/principal">Turmas</a>
+			</div>
+
+			<div id="divSair">
+                <form th:action="@{/logout}" id="formSair" method="post">
+					<input type="submit" value="Sair">
+				</form>
+            </div>
+		</div>
+	
+	</header>
+
+	<div>
+
+
+		<div id="forum">
+			<form id="formBuscarForum" th:action="@{/turmas/buscar}" method="get">
+	          	<h3>Buscar Tópicos</h3>
+	          	<label ><strong>Título</strong></label>
+				<input type="text" placeholder="Título do Tópico" th:name="titulo" />
+				<label ><strong>Texto</strong></label>
+				<input type="text" placeholder="Conteúdo do texto" th:name="texto" />
+
+				<button type="submit">Mostrar Tópicos</button>
+			</form>
+			<br>
+			<table id="tForum" th:each="a : ${forunsEncontrados}">
+				<tr>
+					<th th:text="${a.titulo}"></th>
+				</tr>
+				<tr>
+					<td th:text="${a.texto}"></td>
+				</tr>
+				<tr>
+					<td th:text="'Data da postagem: ' + ${a.data}"></td>
+				</tr>
+				<tr>
+					<td>
+						<a th:href="'/turmas/responder/' + ${a.id}">Responder</a>
+						<a th:href="'/turmas/respostas/' + ${a.id}">Respostas</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="criarForum">
+			<form id="formCriarForum" th:action="@{/turmas/criarForum}">
+				<p>Novo tópico</p>
+				<button type="submit" id="botaoForum">+</button>
+			</form>
+			<br>
+			<hr id="linha">
+		</div>
+
+	</div>
+
+	<footer>
+		<p>-</p>
+	</footer>
+</body>
+</html>
